@@ -42,9 +42,12 @@ public class SecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowCredentials(true);
+        config.setAllowCredentials(false); // 🔥 change this
 
-        config.setAllowedOriginPatterns(List.of("*")); // 🔥 important
+        config.setAllowedOriginPatterns(List.of(
+                "http://localhost:5173",
+                "https://teamtaskmanager-production-7c8c.up.railway.app"
+        ));
 
         config.setAllowedHeaders(List.of("*"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
@@ -59,7 +62,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-                .cors(withDefaults()) // ✅ already correct
+                .cors(withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
