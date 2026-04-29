@@ -44,12 +44,10 @@ public class SecurityConfig {
 
         config.setAllowCredentials(true);
 
-        // 🔥 IMPORTANT CHANGE
-        config.setAllowedOriginPatterns(List.of("*"));
-        // instead of addAllowedOrigin("http://localhost:5173")
+        config.setAllowedOriginPatterns(List.of("*")); // 🔥 important
 
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
