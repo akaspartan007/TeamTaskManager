@@ -42,14 +42,15 @@ public class SecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowCredentials(false); // 🔥 change this
+        config.setAllowCredentials(true); // allow cookies / auth headers
 
-        config.setAllowedOriginPatterns(List.of(
+        config.setAllowedOrigins(List.of(
                 "http://localhost:5173",
-                "https://teamtaskmanager-production-7c8c.up.railway.app"
+                "https://team-task-manager-frontend-jnc2erhfy-akaspartan007s-projects.vercel.app"
         ));
 
         config.setAllowedHeaders(List.of("*"));
+
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
