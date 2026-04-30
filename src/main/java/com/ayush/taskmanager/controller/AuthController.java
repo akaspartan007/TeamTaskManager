@@ -19,7 +19,7 @@ public class AuthController {
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
-    @Value("${admin.secret}")
+    @Value("${admin.secret:DEFAULT_SECRET}")
     private String adminSecret;
 
     @PostMapping("/signup")
