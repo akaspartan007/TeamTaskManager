@@ -46,7 +46,7 @@ public class SecurityConfig {
 
         config.setAllowedOrigins(List.of(
                 "http://localhost:5173",
-                "https://team-task-manager-frontend-jnc2erhfy-akaspartan007s-projects.vercel.app"
+                "https://team-task-manager-frontend-y94x.vercel.app"
         ));
 
         config.setAllowedHeaders(List.of("*"));
