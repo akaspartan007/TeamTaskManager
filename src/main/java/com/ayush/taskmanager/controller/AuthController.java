@@ -1,5 +1,6 @@
 package com.ayush.taskmanager.controller;
 
+import java.util.Map;
 import com.ayush.taskmanager.dto.SignupRequest;
 import com.ayush.taskmanager.entity.Role;
 import com.ayush.taskmanager.entity.User;
@@ -80,7 +81,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody User user) {
+    public ResponseEntity<?> login(@RequestBody User user) {
+
         User existing = userRepository.findByEmail(user.getEmail())
                 .orElseThrow();
 
@@ -88,7 +90,12 @@ public class AuthController {
             throw new RuntimeException("Invalid credentials");
         }
 
+        String token = jwtUtil.generateToken(existing.getEmail());
 
-        return jwtUtil.generateToken(existing.getEmail());
+        return ResponseEntity.ok(Map.of(
+                "token", token,
+                "role", existing.getRole()
+        ));
     }
+
 }
